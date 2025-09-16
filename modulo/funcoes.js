@@ -38,13 +38,22 @@ const getAllEstados = () => {
 }
 //Retorna um estado pesquisando pela sigla.
 const getAllEstadoBySigla = (sigla) => {
+    let siglaEstado = String(sigla)
+     indexEstado = dados.listaDeEstados.estados.findIndex(estados => estados.sigla === siglaEstado)
+    
+      let mensage = {
+        status: true, status_code: 200, development: "Breno Oliveira Assis Reis", uf :dados.listaDeEstados.estados[indexEstado].sigla,
+        descricao:dados.listaDeEstados.estados[indexEstado].nome
+    }
+    return mensage
 
 }
+console.log(getAllEstadoBySigla('SP'))
 //Retorna a capital referente a um estado pela sua determinada sigla.
 const getCapitalBySigla = (sigla) => {
 
 }
-
+console.log()
 //Retorna uma lista de estados pesquisando pela região.
 const getEstadosByRegiao = (regiao) => {
 
