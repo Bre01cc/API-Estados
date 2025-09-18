@@ -7,7 +7,7 @@
  */
 
 
- //Criando um array de mensagens
+//Criando um array de mensagens
 const MENSAGE_ERRO = [
 
     {
@@ -47,10 +47,10 @@ const getAllEstados = () => {
     mensage.quantidade = mensage.uf.length
     //delete mensage(para remover um atributo de um JSON)
     if (mensage.uf.length > 0)
+        //Quem chamar essa função tera como retorno a variável mensage.
         return mensage //Verdadeira status 200
     else
         return MENSAGE_ERRO[0]//Falsa status 500
-
 
 }
 //Retorna um estado pesquisando pela sigla.
@@ -70,6 +70,8 @@ const getAllEstadoBySigla = (sigla) => {
             status: true, status_code: 200, development: "Breno Oliveira Assis Reis", uf: estado.sigla,
             descricao: estado.nome, capital: estado.capital, regiao: estado.regiao
         }
+
+        //Quem chamar essa função tera como retorno a variável mensage.
         return mensage
     }
 }
@@ -91,6 +93,8 @@ const getCapitalBySigla = (sigla) => {
             status: true, status_code: 200, development: "Breno Oliveira Assis Reis", uf: estado.sigla,
             descricao: estado.nome, capital: estado.capital
         }
+
+        //Quem chamar essa função tera como retorno a variável mensage.
         return mensage
     }
 
@@ -99,14 +103,21 @@ const getCapitalBySigla = (sigla) => {
 
 //Retorna uma lista de estados pesquisando pela região.
 const getEstadosByRegiao = (regiao) => {
+    if(!regiao)
+        return MENSAGE_ERRO[2]
     let mensage = {
         status: true, status_code: 200, development: "Breno Oliveira Assis Reis", regiao: regiao,
         estados: []
 
     }
-    dados.listaDeEstados.estados.forEach((item) => {
-        if (item.regiao == regiao) {
-            //Adicionando objetos no Json estados
+
+
+    if(regiao=='Norte'||regiao=='Nordeste'||regiao=='Centro-Oeste'){
+  dados.listaDeEstados.estados.forEach((item) => {
+        //Apenas os estados que tiverem a regiao igual ao recebido no parametro da função
+        //Serão adicionados no atributo estados da mensage
+        if (item.regiao == completo) {
+            //Adicionando objetos no array de estados
             //E a cada item.(atributo) ele será adicionado junto a uf:''
             //ou descricao:''
             mensage.estados.push({
@@ -115,10 +126,12 @@ const getEstadosByRegiao = (regiao) => {
             })
         }
     })
-
-
-    return mensage
+     return mensage
+    }
+    //Quem chamar essa função tera como retorno a variável mensage.
+   
 }
+console.log(getEstadosByRegiao('Norte'))
 
 //Retorna uma lista de estados referente as capitais do país.
 const getVerifyCapitaisDoPais = () => {
@@ -145,7 +158,6 @@ const getVerifyCapitaisDoPais = () => {
     return mensage
 }
 //Para adicionar um elemento novo no JSON  
-getVerifyCapitaisDoPais()
 
 const getCidadesBySigla = (sigla) => {
     if (!sigla)
@@ -168,9 +180,17 @@ const getCidadesBySigla = (sigla) => {
 
             mensage.cidades.push(item.nome)
         })
+        //Quem chamar essa função tera como retorno a variável mensage.
         return mensage
     }
 }
+let nome = 'joao'
+//split metodo separador de string onde no seu parametro passamos o separador EX:espaço, ponto, vírgula e etc. Além do se limite
+let letra = nome.charAt(0,1)
+let letra2 = nome.slice(1)
+
+    console.log(letra)
+//Exportando as funções, se não for exportada não ficara visivel para os demais arquivos do projeto.
 module.exports = {
     getAllEstados,
     getAllEstadoBySigla,
