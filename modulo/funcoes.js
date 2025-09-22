@@ -99,39 +99,34 @@ const getCapitalBySigla = (sigla) => {
     }
 
 }
-
-
 //Retorna uma lista de estados pesquisando pela região.
 const getEstadosByRegiao = (regiao) => {
-    if(!regiao)
+    if (!regiao)
         return MENSAGE_ERRO[2]
     let mensage = {
         status: true, status_code: 200, development: "Breno Oliveira Assis Reis", regiao: regiao,
         estados: []
-
     }
 
-
-    if(regiao=='Norte'||regiao=='Nordeste'||regiao=='Centro-Oeste'){
-  dados.listaDeEstados.estados.forEach((item) => {
-        //Apenas os estados que tiverem a regiao igual ao recebido no parametro da função
-        //Serão adicionados no atributo estados da mensage
-        if (item.regiao == completo) {
-            //Adicionando objetos no array de estados
-            //E a cada item.(atributo) ele será adicionado junto a uf:''
-            //ou descricao:''
-            mensage.estados.push({
-                uf: item.sigla,
-                descricao: item.nome
+    if (regiao == 'Norte' || regiao == 'Nordeste' || regiao == 'Centro-Oeste') {
+        dados.listaDeEstados.estados.forEach((item) => {
+            //Apenas os estados que tiverem a regiao igual ao recebido no parametro da função
+            //Serão adicionados no atributo estados da mensage
+         
+                //Adicionando objetos no array de estados
+                //E a cada item.(atributo) ele será adicionado junto a uf:''
+                //ou descricao:''
+                mensage.estados.push({
+                    uf: item.sigla,
+                    descricao: item.nome
+                })
             })
-        }
-    })
-     return mensage
+    }
+        return mensage
     }
     //Quem chamar essa função tera como retorno a variável mensage.
-   
-}
-console.log(getEstadosByRegiao('Norte'))
+
+
 
 //Retorna uma lista de estados referente as capitais do país.
 const getVerifyCapitaisDoPais = () => {
@@ -152,8 +147,6 @@ const getVerifyCapitaisDoPais = () => {
                 capital_pais_ano_termino: item.capital_pais.ano_fim
             })
         }
-
-
     })
     return mensage
 }
@@ -184,12 +177,6 @@ const getCidadesBySigla = (sigla) => {
         return mensage
     }
 }
-let nome = 'joao'
-//split metodo separador de string onde no seu parametro passamos o separador EX:espaço, ponto, vírgula e etc. Além do se limite
-let letra = nome.charAt(0,1)
-let letra2 = nome.slice(1)
-
-    console.log(letra)
 //Exportando as funções, se não for exportada não ficara visivel para os demais arquivos do projeto.
 module.exports = {
     getAllEstados,
