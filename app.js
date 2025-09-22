@@ -34,14 +34,16 @@ app.use((request, response, next) => {
 //Response -> Retorno de dados na API
 
 //ENDPOINTS
+//Rota responsavel por listar a sigla de todos os estados do Brasil.
 app.get('/v1/estados', function (request, response) {
     let estados = dados.getAllEstados()
     //Retorna o status code
     response.status(estados.status_code)
     //Retorna o JSON
     response.json(estados)
-}
-)
+})
+
+//Rota resposável por listar as informações do estado a partir da sua sigla.
 app.get('/v1/estados/:uf',function (request, response) {
     let sigla = request.params.uf
     let infoEstado = dados.getAllEstadoBySigla(sigla)
@@ -49,6 +51,8 @@ app.get('/v1/estados/:uf',function (request, response) {
     //Retorna o JSON
     response.json(infoEstado)
 })
+
+//Rota resposável por listar a capita do estado e suas demais informações a partir da sua sigla.
 app.get('/v1/capital/:uf',function (request, response) {
     let sigla = request.params.uf
     let infoCapital = dados.getCapitalBySigla(sigla)
@@ -56,6 +60,8 @@ app.get('/v1/capital/:uf',function (request, response) {
     //Retorna o JSON
     response.json(infoCapital)
 })
+
+//Rota responsável por listar todos os estados de uma região.
 app.get('/v1/regiao/:uf',function (request, response) {
     let regiao = request.params.uf
     let infoRegiao = dados.getEstadosByRegiao(regiao)
@@ -63,6 +69,8 @@ app.get('/v1/regiao/:uf',function (request, response) {
     //Retorna o JSON
     response.json(infoRegiao)
 })
+
+//Rota responsável por listar a capital atual e atiga do Brasil.
 app.get('/v1/pais/capitais/',function (request, response) {
     let infoPaisCapital = dados.getVerifyCapitaisDoPais()
     response.status(infoPaisCapital.status_code)
@@ -70,8 +78,18 @@ app.get('/v1/pais/capitais/',function (request, response) {
     response.json(infoPaisCapital)
 })
 
+//Rota responsável por listar as cidades de um determinado estado a partir da sua sigla.
+app.get('/v1/cidades/:uf',function (request, response) {
+    let sigla = request.params.uf
+    let infoCidades = dados.getCidadesBySigla(sigla)
+    response.status(infoCidades.status_code)
+    //Retorna o JSON
+    response.json(infoCidades)
+})
+
 //Start na API
 app.listen(PORT, function () {
     console.log('API aguardando requisições.....')
 })
+
 
