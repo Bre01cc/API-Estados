@@ -112,19 +112,19 @@ const getEstadosByRegiao = (regiao) => {
         dados.listaDeEstados.estados.forEach((item) => {
             //Apenas os estados que tiverem a regiao igual ao recebido no parametro da função
             //Serão adicionados no atributo estados da mensage
-         
-                //Adicionando objetos no array de estados
-                //E a cada item.(atributo) ele será adicionado junto a uf:''
-                //ou descricao:''
-                mensage.estados.push({
-                    uf: item.sigla,
-                    descricao: item.nome
-                })
+
+            //Adicionando objetos no array de estados
+            //E a cada item.(atributo) ele será adicionado junto a uf:''
+            //ou descricao:''
+            mensage.estados.push({
+                uf: item.sigla,
+                descricao: item.nome
             })
+        })
     }
-        return mensage
-    }
-    //Quem chamar essa função tera como retorno a variável mensage.
+    return mensage
+}
+//Quem chamar essa função tera como retorno a variável mensage.
 
 
 
