@@ -108,7 +108,7 @@ const getEstadosByRegiao = (regiao) => {
         estados: []
     }
 
-    if (regiao == 'Norte' || regiao == 'Nordeste' || regiao == 'Centro-Oeste') {
+    if (regiao == 'Norte' || regiao == 'Nordeste' || regiao == 'Centro-Oeste'||regiao=='Sul'||regiao=='Sudeste') {
         dados.listaDeEstados.estados.forEach((item) => {
             //Apenas os estados que tiverem a regiao igual ao recebido no parametro da função
             //Serão adicionados no atributo estados da mensage
@@ -121,8 +121,11 @@ const getEstadosByRegiao = (regiao) => {
                 descricao: item.nome
             })
         })
+        return mensage
+    }else{
+        return MENSAGE_ERRO[1]
     }
-    return mensage
+   
 }
 //Quem chamar essa função tera como retorno a variável mensage.
 
@@ -160,7 +163,7 @@ const getCidadesBySigla = (sigla) => {
     let indexEstado = dados.listaDeEstados.estados.findIndex(estados => estados.sigla === siglaEstado)
 
     if (indexEstado == -1)
-        return MENSAGE_ERRO[2]
+        return MENSAGE_ERRO[0]
     else {
         let estado = dados.listaDeEstados.estados[indexEstado]
         let cidade = estado.cidades
