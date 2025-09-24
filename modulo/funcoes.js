@@ -116,17 +116,24 @@ const getEstadosByRegiao = (regiao) => {
             //Adicionando objetos no array de estados
             //E a cada item.(atributo) ele será adicionado junto a uf:''
             //ou descricao:''
-            mensage.estados.push({
-                uf: item.sigla,
-                descricao: item.nome
-            })
+            if(item.regiao == regiao){
+                mensage.estados.push({
+                    uf: item.sigla,
+                    descricao: item.nome
+                })
+            }
+
+            
+          
         })
+        
         return mensage
     }else{
         return MENSAGE_ERRO[1]
     }
    
 }
+console.log(getEstadosByRegiao("Nordeste"))
 //Quem chamar essa função tera como retorno a variável mensage.
 
 
